@@ -9,7 +9,7 @@ from configFile import ConfigFile, ConfigFileError
 import common
 from prettyPrint import print_coloured, print_error, print_warning
 from colours import Colours
-from spinner import Spinner, STYLE_ARC
+from spinner import Spinner, STYLE_LINE
 
 
 def callback(archive: Archive, bytes_downloaded: int, argument: Spinner) -> None:
@@ -37,7 +37,7 @@ def main() -> None:
                     print_coloured("File size consistent, skipping.", fg_colour=Colours.fg.orange)
                     continue
                 print_coloured("File size inconsistent, re-downloading.", fg_colour=Colours.fg.orange)
-        spinner = Spinner(style_name=STYLE_ARC)
+        spinner = Spinner(style_name=STYLE_LINE, fg_colour=Colours.fg.white, bold=True)
         print_coloured(" Downloading: ", fg_colour=Colours.fg.green, end='')
         spinner.print(increment_step=False, end='\r')
         archive.download(common.SETTINGS['output_dir'],
